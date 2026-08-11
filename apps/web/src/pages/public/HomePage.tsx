@@ -1,9 +1,9 @@
+import { GrainientHero } from "@/components/GrainientHero";
+
 export function HomePage() {
   return (
     <div>
-      <section id="hero" className="flex min-h-screen items-center justify-center">
-        <h1 className="text-6xl font-bold text-gradient">Hero Section</h1>
-      </section>
+      <GrainientHero />
 
       <section
         id="gallery"
