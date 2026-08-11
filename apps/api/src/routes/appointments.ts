@@ -1,6 +1,12 @@
 import { Elysia, t } from "elysia";
 import { AppointmentModel } from "@/models/appointment";
 import { authGuard } from "@/middleware/auth";
+import { broadcastToConversation } from "@/ws/chat";
+import {
+  sendAppointmentCreatedEmail,
+  sendAppointmentUpdatedEmail,
+  sendAppointmentCancelledEmail,
+} from "@/services/email";
 
 export function appointmentRoutes(app: Elysia): Elysia {
   return app.guard(authGuard, (group) =>
@@ -27,6 +33,25 @@ export function appointmentRoutes(app: Elysia): Elysia {
         "/api/appointments",
         async ({ body }) => {
           const appointment = await AppointmentModel.create(body);
+
+          await sendAppointmentCreatedEmail({
+            clientEmail: body.clientEmail,
+            date: body.date,
+            time: body.time,
+            status: body.status ?? "pending",
+          });
+
+          if (body.conversationId) {
+            broadcastToConversation(body.conversationId, {
+              type: "appointment_created",
+              payload: {
+                date: body.date,
+                time: body.time,
+                message: `Su turno fue agendado para el ${body.date} a las ${body.time}`,
+              },
+            });
+          }
+
           return { appointment };
         },
         {
@@ -60,6 +85,44 @@ export function appointmentRoutes(app: Elysia): Elysia {
           if (!appointment) {
             set.status = 404;
             return { error: "Appointment not found" };
+          }
+
+          if (body.status === "cancelled") {
+            await sendAppointmentCancelledEmail({
+              clientEmail: appointment.clientEmail,
+              date: appointment.date.toISOString(),
+              time: appointment.time,
+              status: "cancelled",
+            });
+
+            if (appointment.conversationId) {
+              broadcastToConversation(appointment.conversationId.toString(), {
+                type: "appointment_cancelled",
+                payload: {
+                  date: appointment.date.toISOString(),
+                  time: appointment.time,
+                  message: "Su turno ha sido cancelado",
+                },
+              });
+            }
+          } else {
+            await sendAppointmentUpdatedEmail({
+              clientEmail: appointment.clientEmail,
+              date: appointment.date.toISOString(),
+              time: appointment.time,
+              status: body.status ?? appointment.status,
+            });
+
+            if (appointment.conversationId) {
+              broadcastToConversation(appointment.conversationId.toString(), {
+                type: "appointment_updated",
+                payload: {
+                  date: appointment.date.toISOString(),
+                  time: appointment.time,
+                  message: `Su turno fue modificado para el ${appointment.date.toISOString()} a las ${appointment.time}`,
+                },
+              });
+            }
           }
 
           return { appointment };
