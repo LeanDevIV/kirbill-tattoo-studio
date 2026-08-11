@@ -1,5 +1,6 @@
 import { GrainientHero } from "@/components/GrainientHero";
 import { DriftGallery } from "@/components/DriftGallery";
+import { ContactSection } from "@/components/ContactSection";
 
 export function HomePage() {
   return (
@@ -13,12 +14,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section
-        id="contact"
-        className="flex min-h-screen items-center justify-center border-t border-border"
-      >
-        <h2 className="text-4xl font-bold text-gradient">Contact Section</h2>
-      </section>
+      <ContactSection />
     </div>
   );
 }
