@@ -6,3 +6,4 @@ dist/
 .cache/
 .vite/
 .DS_Store
+apps/web/tsconfig.tsbuildinfo

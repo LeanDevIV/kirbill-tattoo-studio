@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0a0a0a;
+  --color-foreground: #f5f0eb;
+  --color-cardinal: #8b1a1a;
+  --color-cardinal-light: #b22222;
+  --color-blush: #d4756b;
+  --color-fuscia: #c94f7c;
+  --color-muted: #a89f97;
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+
+  --animate-float-slow: float-slow 6s ease-in-out infinite;
+  --animate-rise: rise-in 0.6s ease-out forwards;
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glow-cardinal {
+    box-shadow: 0 0 20px rgba(139, 26, 26, 0.4);
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--color-foreground),
+      var(--color-cardinal-light),
+      var(--color-blush)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-float-slow {
+    animation: var(--animate-float-slow);
+  }
+
+  .animate-rise {
+    animation: var(--animate-rise);
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@kirbill/api",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "build": "bun build src/index.ts --target=bun --outdir=dist",
+    "lint": "biome check src/",
+    "seed": "bun run src/seed.ts"
+  },
+  "dependencies": {
+    "elysia": "^1.2.25",
+    "@elysiajs/cookie": "^0.8.0",
+    "@elysiajs/cors": "^1.2.0",
+    "@elysiajs/jwt": "^1.2.0",
+    "mongoose": "^8.13.2",
+    "bcryptjs": "^3.0.2",
+    "@vercel/blob": "^1.1.1",
+    "resend": "^4.5.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "bun-types": "^1.2.10"
+  }
+}
