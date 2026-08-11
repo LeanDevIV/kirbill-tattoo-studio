@@ -1,5 +1,6 @@
 import { connectDB } from "@/db";
 import { authRoutes } from "@/routes/auth";
+import { galleryRoutes } from "@/routes/gallery";
 import { heroImageRoutes } from "@/routes/hero-images";
 import { cookie } from "@elysiajs/cookie";
 import { cors } from "@elysiajs/cors";
@@ -19,6 +20,7 @@ const app = new Elysia()
   )
   .use(authRoutes)
   .use(heroImageRoutes)
+  .use(galleryRoutes)
   .get("/api/health", () => ({ status: "ok", timestamp: new Date().toISOString() }));
 
 await connectDB();
