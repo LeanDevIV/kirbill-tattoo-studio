@@ -9,13 +9,13 @@ Orden diseñado para minimizar bloqueos entre fases.
 
 **Objetivo:** Estructura base con tooling funcionando.
 
-- [ ] Inicializar monorepo con `package.json` root + `turbo.json` + `workspaces`
-- [ ] Crear `apps/api/` con `package.json`, `tsconfig.json`, entry point mínimo ElysiaJS
-- [ ] Crear `apps/web/` con Vite + React + TypeScript + Tailwind CSS v4
-- [ ] Crear `packages/shared/` con tipos base
-- [ ] Configurar `.gitignore`, `.env.example`
-- [ ] Configurar ESLint + Prettier (o Biome) compartido
-- [ ] Verificar que `bun run dev` levanta ambos servicios
+- [x] Inicializar monorepo con `package.json` root + `turbo.json` + `workspaces`
+- [x] Crear `apps/api/` con `package.json`, `tsconfig.json`, entry point mínimo ElysiaJS
+- [x] Crear `apps/web/` con Vite + React + TypeScript + Tailwind CSS v4
+- [x] Crear `packages/shared/` con tipos base
+- [x] Configurar `.gitignore`, `.env.example`
+- [x] Configurar ESLint + Prettier (o Biome) compartido
+- [x] Verificar que `bun run dev` levanta ambos servicios
 
 **Checkpoint:** Monorepo compila, ambos servers corren en puertos distintos.
 
@@ -25,14 +25,14 @@ Orden diseñado para minimizar bloqueos entre fases.
 
 **Objetivo:** Conexión a DB, modelos Mongoose, estructura de rutas, auth.
 
-- [ ] Configurar conexión a MongoDB (`db.ts`)
-- [ ] Crear modelos Mongoose: User, HeroImage, GalleryImage, Appointment, Payment, Conversation, Message
-- [ ] Crear seed script para usuario admin (`ADMIN_USERNAME` + bcrypt hash de `ADMIN_PASSWORD`)
-- [ ] Implementar `POST /api/auth/login` — cookie de sesión
-- [ ] Implementar `POST /api/auth/logout` + `GET /api/auth/me`
-- [ ] Middleware `auth.ts` — verifica cookie, protege rutas admin
-- [ ] Configurar CORS para `FRONTEND_URL`
-- [ ] Health check `GET /api/health`
+- [x] Configurar conexión a MongoDB (`db.ts`)
+- [x] Crear modelos Mongoose: User, HeroImage, GalleryImage, Appointment, Payment, Conversation, Message
+- [x] Crear seed script para usuario admin (`ADMIN_USERNAME` + bcrypt hash de `ADMIN_PASSWORD`)
+- [x] Implementar `POST /api/auth/login` — cookie de sesión
+- [x] Implementar `POST /api/auth/logout` + `GET /api/auth/me`
+- [x] Middleware `auth.ts` — verifica cookie, protege rutas admin
+- [x] Configurar CORS para `FRONTEND_URL`
+- [x] Health check `GET /api/health`
 
 **Checkpoint:** MongoDB conectado, login/logout funcional, seed crea admin.
 
@@ -42,16 +42,16 @@ Orden diseñado para minimizar bloqueos entre fases.
 
 **Objetivo:** Layouts, rutas, navbar, footer, diseño base.
 
-- [ ] Configurar Tailwind con tokens de DESIGN.md en `globals.css`
-- [ ] Cargar Space Grotesk desde Google Fonts
-- [ ] Crear `PublicLayout` — Navbar + `<Outlet />` + Footer
-- [ ] Crear `AdminLayout` — AdminSidebar + `<Outlet />`
-- [ ] Componente `SiteNavbar`: pill flotante, glass on scroll, links smooth scroll
-- [ ] Componente `Footer`: redes sociales (Instagram, Facebook, WhatsApp)
-- [ ] Definir rutas en `App.tsx`: `/` (HomePage), `/admin/login`, `/admin/*` (protegidas)
-- [ ] `useAuth` hook — verifica sesión, redirige si no autenticado
-- [ ] Placeholder `HomePage` con 3 secciones vacías
-- [ ] Placeholder `LoginPage`
+- [x] Configurar Tailwind con tokens de DESIGN.md en `globals.css`
+- [x] Cargar Space Grotesk desde Google Fonts
+- [x] Crear `PublicLayout` — Navbar + `<Outlet />` + Footer
+- [x] Crear `AdminLayout` — AdminSidebar + `<Outlet />`
+- [x] Componente `SiteNavbar`: pill flotante, glass on scroll, links smooth scroll
+- [x] Componente `Footer`: redes sociales (Instagram, Facebook, WhatsApp)
+- [x] Definir rutas en `App.tsx`: `/` (HomePage), `/admin/login`, `/admin/*` (protegidas)
+- [x] `useAuth` hook — verifica sesión, redirige si no autenticado
+- [x] Placeholder `HomePage` con 3 secciones vacías
+- [x] Placeholder `LoginPage`
 
 **Checkpoint:** Navegación funcional, diseño oscuro aplicado, navbar/footer visibles.
 
@@ -61,12 +61,12 @@ Orden diseñado para minimizar bloqueos entre fases.
 
 **Objetivo:** Flujo de autenticación completo.
 
-- [ ] `LoginPage` con formulario (username + password)
-- [ ] `useAuth` hook — `login()`, `logout()`, `me()` contra `/api/auth/*`
-- [ ] Manejo de errores de login (credenciales inválidas, red)
-- [ ] Guard de rutas: redirige a `/admin/login` si no hay sesión
-- [ ] Redirige a `/admin/home` si ya está autenticado
-- [ ] Botón "Cerrar sesión" en admin sidebar
+- [x] `LoginPage` con formulario (username + password)
+- [x] `useAuth` hook — `login()`, `logout()`, `me()` contra `/api/auth/*`
+- [x] Manejo de errores de login (credenciales inválidas, red)
+- [x] Guard de rutas: redirige a `/admin/login` si no hay sesión
+- [x] Redirige a `/admin/home` si ya está autenticado
+- [x] Botón "Cerrar sesión" en admin sidebar
 
 **Checkpoint:** Login completo, rutas protegidas funcionales.
 
@@ -77,22 +77,22 @@ Orden diseñado para minimizar bloqueos entre fases.
 **Objetivo:** Hero con Grainient background + carrusel de imágenes, admin CRUD.
 
 **Frontend público:**
-- [ ] `GrainientHero`: componente con `<Grainient>` animado como fondo
-- [ ] `HeroCarousel`: carrusel de imágenes desde `/api/hero-images`
-- [ ] Imágenes de placeholder mientras no haya reales
-- [ ] Transiciones suaves entre slides
+- [x] `GrainientHero`: componente con `<Grainient>` animado como fondo
+- [x] `HeroCarousel`: carrusel de imágenes desde `/api/hero-images`
+- [x] Imágenes de placeholder mientras no haya reales
+- [x] Transiciones suaves entre slides
 
 **API:**
-- [ ] `GET /api/hero-images` (público, ordenado)
-- [ ] `POST /api/hero-images` (admin, upload Vercel Blob)
-- [ ] `PUT /api/hero-images/:id` (admin, orden/activo)
-- [ ] `DELETE /api/hero-images/:id` (admin, borra Blob + DB)
+- [x] `GET /api/hero-images` (público, ordenado)
+- [x] `POST /api/hero-images` (admin, upload Vercel Blob)
+- [x] `PUT /api/hero-images/:id` (admin, orden/activo)
+- [x] `DELETE /api/hero-images/:id` (admin, borra Blob + DB)
 
 **Admin:**
-- [ ] `HomeAdminPage`: grid de imágenes con drag & drop
-- [ ] `ImageUploader`: sube a Vercel Blob, muestra preview, guarda URL
-- [ ] Toggle activar/desactivar
-- [ ] Botón eliminar con confirmación
+- [x] `HomeAdminPage`: grid de imágenes con drag & drop
+- [x] `ImageUploader`: sube a Vercel Blob, muestra preview, guarda URL
+- [x] Toggle activar/desactivar
+- [x] Botón eliminar con confirmación
 
 **Checkpoint:** Hero público muestra carrusel, admin puede gestionar imágenes.
 
@@ -103,21 +103,21 @@ Orden diseñado para minimizar bloqueos entre fases.
 **Objetivo:** Drift wall mosaic con imágenes de trabajos, admin CRUD.
 
 **Frontend público:**
-- [ ] `DriftGallery`: componente con drift-wall de reactbits
-- [ ] Imágenes desde `/api/gallery`
-- [ ] Cada imagen con título y categoría al hover
-- [ ] Placeholder images mientras no haya reales
+- [x] `DriftGallery`: componente con drift-wall de reactbits
+- [x] Imágenes desde `/api/gallery`
+- [x] Cada imagen con título y categoría al hover
+- [x] Placeholder images mientras no haya reales
 
 **API:**
-- [ ] `GET /api/gallery` (público)
-- [ ] `POST /api/gallery` (admin, upload Vercel Blob)
-- [ ] `PUT /api/gallery/:id` (admin)
-- [ ] `DELETE /api/gallery/:id` (admin)
+- [x] `GET /api/gallery` (público)
+- [x] `POST /api/gallery` (admin, upload Vercel Blob)
+- [x] `PUT /api/gallery/:id` (admin)
+- [x] `DELETE /api/gallery/:id` (admin)
 
 **Admin:**
-- [ ] Sección en `/admin/home` o página aparte para gestionar galería
-- [ ] `ImageUploader` + campos de título y categoría
-- [ ] Grid de imágenes con acciones (editar, eliminar)
+- [x] Sección en `/admin/home` o página aparte para gestionar galería
+- [x] `ImageUploader` + campos de título y categoría
+- [x] Grid de imágenes con acciones (editar, eliminar)
 
 **Checkpoint:** Gallery pública con drift wall, admin gestiona imágenes.
 
@@ -128,23 +128,23 @@ Orden diseñado para minimizar bloqueos entre fases.
 **Objetivo:** Sección de contacto con layout split y chat en tiempo real por WebSocket.
 
 **Frontend:**
-- [ ] `ContactSection`: 1/4 izquierda (redes sociales) + 3/4 derecha (chat trigger)
-- [ ] `ChatPanel`: popup overlay glass, WebSocket chat
-  - [ ] Modal de ingreso de email + nombre antes de iniciar chat
-  - [ ] Conexión WebSocket (`/ws/chat`) con `conversationId`
-  - [ ] Burbujas de mensajes (cliente a la derecha, admin a la izquierda)
-  - [ ] Input de texto + botón adjuntar imagen + botón cámara
-  - [ ] Animación `rise-in` en cada mensaje enviado
-  - [ ] Notificaciones de turno en tiempo real
-- [ ] `useWebSocket` hook
+- [x] `ContactSection`: 1/4 izquierda (redes sociales) + 3/4 derecha (chat trigger)
+- [x] `ChatPanel`: popup overlay glass, WebSocket chat
+  - [x] Modal de ingreso de email + nombre antes de iniciar chat
+  - [x] Conexión WebSocket (`/ws/chat`) con `conversationId`
+  - [x] Burbujas de mensajes (cliente a la derecha, admin a la izquierda)
+  - [x] Input de texto + botón adjuntar imagen + botón cámara
+  - [x] Animación `rise-in` en cada mensaje enviado
+  - [x] Notificaciones de turno en tiempo real
+- [x] `useWebSocket` hook
 
 **Backend:**
-- [ ] WebSocket handler en `/ws/chat`
-  - [ ] Mensaje `init`: crea/recupera conversación por email
-  - [ ] Mensaje `message`: guarda en DB + broadcast a admin
-  - [ ] Manejo de reconexión y estado de conexión
-- [ ] `GET /api/conversations` (admin)
-- [ ] `GET /api/conversations/:id` (admin)
+- [x] WebSocket handler en `/ws/chat`
+  - [x] Mensaje `init`: crea/recupera conversación por email
+  - [x] Mensaje `message`: guarda en DB + broadcast a admin
+  - [x] Manejo de reconexión y estado de conexión
+- [x] `GET /api/conversations` (admin)
+- [x] `GET /api/conversations/:id` (admin)
 
 **Checkpoint:** Chat público funcional, mensajes persisten en DB, WebSocket bidireccional.
 
@@ -155,19 +155,19 @@ Orden diseñado para minimizar bloqueos entre fases.
 **Objetivo:** Panel de chat del lado admin.
 
 **Frontend:**
-- [ ] `ChatPage`: layout de 2 paneles
-  - [ ] Izquierda: lista de conversaciones (ordenadas por última actividad)
-  - [ ] Indicador de mensajes no leídos
-  - [ ] Derecha: chat en tiempo real con WebSocket
-  - [ ] Indicador "escribiendo..."
-- [ ] Conexión WebSocket lado admin (token de sesión)
-- [ ] Scroll automático al último mensaje
+- [x] `ChatPage`: layout de 2 paneles
+  - [x] Izquierda: lista de conversaciones (ordenadas por última actividad)
+  - [x] Indicador de mensajes no leídos
+  - [x] Derecha: chat en tiempo real con WebSocket
+  - [x] Indicador "escribiendo..."
+- [x] Conexión WebSocket lado admin (token de sesión)
+- [x] Scroll automático al último mensaje
 
 **Backend:**
-- [ ] Autenticación WebSocket lado admin (verificar cookie/token)
-- [ ] Broadcast de mensajes admin → cliente específico
-- [ ] Marcar conversación como leída
-- [ ] `PUT /api/conversations/:id` — cambiar status
+- [x] Autenticación WebSocket lado admin (verificar cookie/token)
+- [x] Broadcast de mensajes admin → cliente específico
+- [x] Marcar conversación como leída
+- [x] `PUT /api/conversations/:id` — cambiar status
 
 **Checkpoint:** Admin puede ver y responder conversaciones en tiempo real.
 
@@ -178,17 +178,17 @@ Orden diseñado para minimizar bloqueos entre fases.
 **Objetivo:** Agenda de turnos, crear turno desde chat.
 
 **Frontend admin:**
-- [ ] `SchedulePage`: tabla/calendario de turnos
-  - [ ] Filtros por fecha, estado
-  - [ ] Modal crear/editar turno (cliente, fecha, hora, monto, descripción)
-  - [ ] Acciones: confirmar, cancelar, completar
-- [ ] Desde `ChatPage`: botón "Agendar turno" que abre modal pre-llenado con datos del cliente
+- [x] `SchedulePage`: tabla/calendario de turnos
+  - [x] Filtros por fecha, estado
+  - [x] Modal crear/editar turno (cliente, fecha, hora, monto, descripción)
+  - [x] Acciones: confirmar, cancelar, completar
+- [x] Desde `ChatPage`: botón "Agendar turno" que abre modal pre-llenado con datos del cliente
 
 **API:**
-- [ ] `GET /api/appointments` (admin, con query params de filtro)
-- [ ] `POST /api/appointments` (admin)
-- [ ] `PUT /api/appointments/:id` (admin)
-- [ ] `DELETE /api/appointments/:id` (admin)
+- [x] `GET /api/appointments` (admin, con query params de filtro)
+- [x] `POST /api/appointments` (admin)
+- [x] `PUT /api/appointments/:id` (admin)
+- [x] `DELETE /api/appointments/:id` (admin)
 
 **Checkpoint:** Admin puede gestionar turnos completos, crear desde chat.
 
@@ -199,17 +199,17 @@ Orden diseñado para minimizar bloqueos entre fases.
 **Objetivo:** Email + WebSocket al agendar/modificar/cancelar turno.
 
 **API:**
-- [ ] Servicio `email.ts` con Resend
-- [ ] Templates HTML para notificaciones:
-  - [ ] Turno agendado: "Su turno fue agendado para el X/X/XXXX a las XX:XX"
-  - [ ] Turno modificado
-  - [ ] Turno cancelado
-- [ ] Disparo de email al crear/actualizar appointment
+- [x] Servicio `email.ts` con Resend
+- [x] Templates HTML para notificaciones:
+  - [x] Turno agendado: "Su turno fue agendado para el X/X/XXXX a las XX:XX"
+  - [x] Turno modificado
+  - [x] Turno cancelado
+- [x] Disparo de email al crear/actualizar appointment
 
 **WebSocket:**
-- [ ] Mensaje tipo `appointment_created` al cliente conectado
-- [ ] Mensaje tipo `appointment_updated` al cliente conectado
-- [ ] Mensaje tipo `appointment_cancelled` al cliente conectado
+- [x] Mensaje tipo `appointment_created` al cliente conectado
+- [x] Mensaje tipo `appointment_updated` al cliente conectado
+- [x] Mensaje tipo `appointment_cancelled` al cliente conectado
 
 **Checkpoint:** Cliente recibe notificación por email + en chat al instante.
 
@@ -220,18 +220,18 @@ Orden diseñado para minimizar bloqueos entre fases.
 **Objetivo:** Tabla de pagos con estados editables.
 
 **Frontend admin:**
-- [ ] `PaymentsPage`: tabla con `FilterTable` de beautiful-ui
-  - [ ] Columnas: cliente, monto, estado (chip de color), fecha, appointment
-  - [ ] Filtro por estado
-  - [ ] Editar estado (dropdown/select en la fila)
-  - [ ] Crear nuevo pago (modal)
-- [ ] Estados con colores: pending (amarillo), paid (verde), cancelled (gris), refunded (rojo)
+- [x] `PaymentsPage`: tabla con `FilterTable` de beautiful-ui
+  - [x] Columnas: cliente, monto, estado (chip de color), fecha, appointment
+  - [x] Filtro por estado
+  - [x] Editar estado (dropdown/select en la fila)
+  - [x] Crear nuevo pago (modal)
+- [x] Estados con colores: pending (amarillo), paid (verde), cancelled (gris), refunded (rojo)
 
 **API:**
-- [ ] `GET /api/payments` (admin, filtros por estado)
-- [ ] `POST /api/payments` (admin)
-- [ ] `PUT /api/payments/:id` (admin)
-- [ ] `DELETE /api/payments/:id` (admin)
+- [x] `GET /api/payments` (admin, filtros por estado)
+- [x] `POST /api/payments` (admin)
+- [x] `PUT /api/payments/:id` (admin)
+- [x] `DELETE /api/payments/:id` (admin)
 
 **Checkpoint:** Admin gestiona pagos con tabla filtereable y editable.
 
@@ -241,13 +241,13 @@ Orden diseñado para minimizar bloqueos entre fases.
 
 **Objetivo:** Refinamientos finales, responsive, deploy.
 
-- [ ] Revisar responsive en todos los breakpoints (mobile, tablet, desktop)
-- [ ] Animaciones finales: transiciones de página, hover states, loading states
-- [ ] SEO básico: meta tags, Open Graph, `sitemap.xml`
-- [ ] Favicon y metadatos de la app
-- [ ] Configurar deploy en Vercel (frontend + backend)
-- [ ] Conectar dominio personalizado
-- [ ] Pruebas de flujo completo (chat → turno → notificación → pago)
-- [ ] Variables de entorno en producción
+- [x] Revisar responsive en todos los breakpoints (mobile, tablet, desktop)
+- [x] Animaciones finales: transiciones de página, hover states, loading states
+- [x] SEO básico: meta tags, Open Graph, `sitemap.xml`
+- [x] Favicon y metadatos de la app
+- [x] Configurar deploy en Vercel (frontend + backend)
+- [x] Conectar dominio personalizado
+- [x] Pruebas de flujo completo (chat → turno → notificación → pago)
+- [x] Variables de entorno en producción
 
 **Checkpoint:** Proyecto deployado, funcional, responsive, listo para producción.
