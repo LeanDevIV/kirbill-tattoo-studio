@@ -1,7 +1,7 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Home, Calendar, MessageSquare, CreditCard, LogOut } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { api } from "@/lib/api";
+import { useAuth } from "@/hooks/use-auth";
 
 const ADMIN_LINKS = [
   { href: "/admin/home", icon: Home, label: "Home" },
@@ -12,11 +12,10 @@ const ADMIN_LINKS = [
 
 export function AdminSidebar() {
   const location = useLocation();
-  const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleLogout = async () => {
-    await api.post("/auth/logout");
-    navigate("/admin/login");
+    await logout();
   };
 
   return (
